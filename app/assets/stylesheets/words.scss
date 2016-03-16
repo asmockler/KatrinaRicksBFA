@@ -1,0 +1,21 @@
+// Place all the styles related to the words controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.new-word {
+  h1 {
+    font-size: 70px;
+    margin-bottom: 80px;
+  }
+
+  input.word-input {
+    font-size: 290px;
+    border: 0;
+    width: 100%;
+    padding: 0;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
