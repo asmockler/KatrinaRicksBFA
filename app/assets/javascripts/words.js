@@ -14,16 +14,16 @@ String.prototype.width = function(font) {
 $(function () {
 
   // Get the inputs as needed
-  const jqInput = $('.word-input')
-  const jqInputWidth = jqInput.innerWidth()
-  const input = jqInput[0]
+  var jqInput = $('.word-input')
+  var jqInputWidth = jqInput.innerWidth()
+  var input = jqInput[0]
 
   // Get the maximum font size, according to what is set on the page
-  const maxFontSize = parseInt(jqInput.css('font-size'), 10)
+  var maxFontSize = parseInt(jqInput.css('font-size'), 10)
 
   // Resize the text if necessary so it always fits on the screen
-  jqInput.on('keyup', (e) => {
-    let currentFontSize = parseInt(jqInput.css('font-size'), 10)
+  jqInput.on('keyup', function (e) {
+    var currentFontSize = parseInt(jqInput.css('font-size'), 10)
 
     // While the value's width is greater than the input width,
     // decrease the size
@@ -41,7 +41,7 @@ $(function () {
   })
 
   // Prevent spaces (force one-word responses)
-  jqInput.on('keydown', (e) => {
+  jqInput.on('keydown', function (e) {
     if (e.keyCode === 32)
       e.preventDefault()
   })
