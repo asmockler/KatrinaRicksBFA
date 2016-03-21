@@ -40,10 +40,30 @@ $(function () {
     }
   })
 
-  // Prevent spaces (force one-word responses)
   jqInput.on('keydown', function (e) {
+    // Prevent spaces (force one-word responses)
     if (e.keyCode === 32)
       e.preventDefault()
+
+    // Submit the word on enter
+    if (e.keyCode === 13) {
+      e.preventDefault()
+      $.ajax({
+        method: 'POST',
+        url: '/words',
+        data: {
+          word: {
+            word: jqInput.val()
+          }
+        },
+        success: function (e) {
+          var thankYouScreen = $('.thank-you-screen')
+          thankYouScreen.css('top', 0)
+          window.setTimeout(function () {thankYouScreen.css('top', '100%')}, 2000)
+        }
+      })
+
+    }
   })
 
 })

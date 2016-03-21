@@ -24,7 +24,17 @@ class WordsController < ApplicationController
   # POST /words
   # POST /words.json
   def create
-    @word = Word.new(word_params)
+    # Normalize the input
+    input = word_params[:word].downcase
+
+    # If the word already exists, just update the frequency count
+    begin
+      @word = Word.find_by_word(input)
+      current_frequency = @word.frequency
+      @word.assign_attributes(frequency: current_frequency + 1)
+    rescue
+      @word = Word.new(input)
+    end
 
     respond_to do |format|
       if @word.save
@@ -69,6 +79,6 @@ class WordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def word_params
-      params.fetch(:word, {})
+      params.fetch(:word, {}).permit(:word)
     end
 end
