@@ -33,7 +33,7 @@ class WordsController < ApplicationController
       current_frequency = @word.frequency
       @word.assign_attributes(frequency: current_frequency + 1)
     rescue
-      @word = Word.new(input)
+      @word = Word.new(word_params)
     end
 
     respond_to do |format|
