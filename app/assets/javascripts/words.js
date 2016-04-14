@@ -13,6 +13,8 @@ String.prototype.width = function(font) {
 
 $(function () {
 
+  if (('#word-new').length > 0) $('body').css('overflow', 'hidden')
+
   // Get the inputs as needed
   var jqInput = $('.word-input')
   var jqInputWidth = jqInput.innerWidth()
@@ -20,6 +22,21 @@ $(function () {
 
   // Get the maximum font size, according to what is set on the page
   var maxFontSize = parseInt(jqInput.css('font-size'), 10)
+
+  // Create the progress bar
+  // progressbar.js@1.0.0 version is used
+  // Docs: http://progressbarjs.readthedocs.org/en/1.0.0/
+  var bar = new ProgressBar.Circle('#progress-bar-container', {
+    strokeWidth: 50,
+    easing: 'linear',
+    duration: 1200,
+    color: '#333',
+    trailColor: 'transparent',
+    trailWidth: 1,
+    svgStyle: null
+  });
+
+  jqInput.focus()
 
   // Resize the text if necessary so it always fits on the screen
   jqInput.on('keyup', function (e) {
@@ -56,10 +73,8 @@ $(function () {
             word: jqInput.val()
           }
         },
-        success: function (e) {
-          var thankYouScreen = $('.thank-you-screen')
-          thankYouScreen.css('top', 0)
-          window.setTimeout(function () {thankYouScreen.css('top', '100%')}, 2000)
+        success: function () {
+          showThankYouScreen(bar, jqInput)
         }
       })
 
@@ -67,3 +82,52 @@ $(function () {
   })
 
 })
+
+/*
+ * Ok, I know what you're thinking: "what the hell are those setTimeouts for?!"
+ * I don't blame you. I wish they weren't there. Unfortunately, Chrome didn't like
+ * re-running the animation without them. Its a bummer. I bet there is a better fix,
+ * but I'm not smart enough to know it. Thx bye.
+ */
+var showThankYouScreen = function (bar, input) {
+  input.blur()
+
+  var submittedWord = input.val(),
+      submittedWordWidth = submittedWord.width(input.css('font')),
+      inputPosition = input[0].getBoundingClientRect(),
+      inputFontSize = input.css('font-size'),
+      prompt = $('#prompt')
+
+  var position = (window.innerWidth / 2) - (submittedWordWidth / 2) - parseInt($('body').css('padding-left'), 10)
+  input.css('left', position)
+  prompt.css('opacity', 0)
+
+  window.setTimeout(function () {
+    // Bring in the thank you screen
+    var thankYouScreen = $('.thank-you-screen')
+
+    // Slide the screen in
+    thankYouScreen.removeClass('slide-down bounce-out').addClass('slide-up')
+    window.setTimeout(function () {
+      thankYouScreen.addClass('bounce-in')
+    }, 0)
+
+    // Reset the progress and start the animation
+    bar.set(0)
+    bar.animate(1.0, function () {
+      // Slide the screen out
+      thankYouScreen.removeClass('bounce-in slide-up').addClass('slide-down')
+      window.setTimeout(function () {
+        thankYouScreen.addClass('bounce-out')
+      }, 0)
+
+      // Reset the input
+      input.css({
+        'left': 0,
+        'font-size': 290
+      }).val('').focus()
+      prompt.css('opacity', 1)
+    });
+  }, 1200)
+
+}
