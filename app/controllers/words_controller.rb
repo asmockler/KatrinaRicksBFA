@@ -1,10 +1,15 @@
 class WordsController < ApplicationController
-  before_action :set_word, only: [:show, :edit, :update, :destroy]
+  before_action :set_word, only: [:show, :edit, :update, :destroy, :toggle_approval]
 
   # GET /words
   # GET /words.json
   def index
     @words = Word.all
+
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @words.where(visible: true) }
+    end
   end
 
   # GET /words/1
@@ -69,6 +74,13 @@ class WordsController < ApplicationController
       format.html { redirect_to words_url, notice: 'Word was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # GET /words/1/toggle_approval
+  def toggle_approval
+    @word.update_attribute(:visible, !@word.visible)
+
+    render json: {visibility: @word.visible}, status: :ok
   end
 
   private

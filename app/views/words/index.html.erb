@@ -1,20 +1,34 @@
 <div class="container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Word</th>
-        <th>Frequency</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @words.each do |word| %>
-      <tr>
-        <td><%= word.word %></td>
-        <td><%= word.frequency %></td>
-        <td><a href="/words/<%= word.id %>/edit">Edit</a></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Word</th>
+          <th>Frequency</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @words.each do |word| %>
+        <tr>
+          <td><%= word.word %></td>
+          <td><%= word.frequency %></td>
+          <td><a href="/words/<%= word.id %>/edit">Edit</a></td>
+          <td>
+            <a href="/words/<%= word.id %>/toggle_approval" class="toggle-word-visibility">
+              <% if word.visible %>
+              un-approve
+              <% else %>
+              approve
+              <% end %>
+            </a>
+          </td>
+          <td><%= link_to "delete", word, :method => :delete, data: {:confirm => 'Are you sure?'} %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

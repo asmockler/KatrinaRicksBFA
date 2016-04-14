@@ -1,5 +1,9 @@
 'use strict'
 
+////
+// New
+//
+
 // Get the width of a string
 String.prototype.width = function(font) {
   var f = font || '12px arial',
@@ -13,7 +17,8 @@ String.prototype.width = function(font) {
 
 $(function () {
 
-  if (('#word-new').length > 0) $('body').css('overflow', 'hidden')
+  if ($('#word-new').length > 0) $('body').css('overflow', 'hidden')
+  else return
 
   // Get the inputs as needed
   var jqInput = $('.word-input')
@@ -131,3 +136,20 @@ var showThankYouScreen = function (bar, input) {
   }, 1200)
 
 }
+
+
+////
+// Show
+//
+$(function () {
+  $('.toggle-word-visibility').on('click', function (e) {
+    e.preventDefault()
+    var link = $(this)
+
+    $.get($(this).attr('href'), function (data) {
+      e.preventDefault();
+      // var linkText = 
+      link.html(data.visibility ? "un-approve" : "approve")
+    })
+  })
+})

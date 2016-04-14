@@ -1,0 +1,20 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Word</th>
+        <th>Frequency</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @words.each do |word| %>
+      <tr>
+        <td><%= word.word %></td>
+        <td><%= word.frequency %></td>
+        <td><a href="/words/<%= word.id %>/edit">Edit</a></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
