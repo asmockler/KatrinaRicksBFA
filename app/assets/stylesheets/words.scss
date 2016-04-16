@@ -47,15 +47,27 @@
     font-size: 240px;
     margin-top: 0px;
   }
+
+  #progress-bar-container {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 100px;
+    bottom: 100px;
+  }
+
+  h2 {
+    position: absolute;
+    bottom: 100px;
+    right: 175px;
+    font-size: 20px;
+
+    span {
+      font-family: Arial!important;
+    }
+  }
 }
 
-#progress-bar-container {
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  right: 100px;
-  bottom: 100px;
-}
 
 
 
@@ -104,12 +116,4 @@
   47.35% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -5.245, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -5.245, 0, 1); }
   67.37% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0.299, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0.299, 0, 1); }
   100% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
-}
-
-
-////
-// Show
-//
-.toggle-word-visibility {
-  
 }
