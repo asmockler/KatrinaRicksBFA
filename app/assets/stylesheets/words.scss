@@ -19,7 +19,7 @@
     position: relative;
     left: 0;
 
-    transition: left 0.25s;
+    transition: left 0.25s, opacity 0.5s;
 
     &:focus {
       outline: none;

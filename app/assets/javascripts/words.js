@@ -34,7 +34,7 @@ $(function () {
   var bar = new ProgressBar.Circle('#progress-bar-container', {
     strokeWidth: 50,
     easing: 'linear',
-    duration: 1200,
+    duration: 2500,
     color: '#333',
     trailColor: 'transparent',
     trailWidth: 1,
@@ -104,8 +104,12 @@ var showThankYouScreen = function (bar, input) {
       prompt = $('#prompt')
 
   var position = (window.innerWidth / 2) - (submittedWordWidth / 2) - parseInt($('body').css('padding-left'), 10)
-  input.css('left', position)
+  input.css({
+    'left': position,
+  })
   prompt.css('opacity', 0)
+
+  window.setTimeout(function () { input.css('opacity', 0) }, 1500)
 
   window.setTimeout(function () {
     // Bring in the thank you screen
@@ -129,11 +133,12 @@ var showThankYouScreen = function (bar, input) {
       // Reset the input
       input.css({
         'left': 0,
-        'font-size': 290
+        'font-size': 290,
+        'opacity': 1
       }).val('').focus()
       prompt.css('opacity', 1)
     });
-  }, 1200)
+  }, 2000)
 
 }
 
@@ -148,7 +153,6 @@ $(function () {
 
     $.get($(this).attr('href'), function (data) {
       e.preventDefault();
-      // var linkText = 
       link.html(data.visibility ? "un-approve" : "approve")
     })
   })
