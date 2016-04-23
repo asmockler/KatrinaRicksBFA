@@ -13,6 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'normalize-rails'
 gem 'd3js-rails'
+gem 'obscenity'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
