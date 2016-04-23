@@ -70,6 +70,10 @@ $(function () {
     // Submit the word on enter
     if (e.keyCode === 13) {
       e.preventDefault()
+
+      // Don't allow empty string
+      if (jqInput.val() === '') return
+
       $.ajax({
         method: 'POST',
         url: '/words',
