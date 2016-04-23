@@ -91,6 +91,6 @@ class WordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def word_params
-      params.fetch(:word, {}).permit(:word)
+      params.fetch(:word, {}).permit(:word, :frequency, :visible)
     end
 end
