@@ -84,6 +84,9 @@ $(function () {
         },
         success: function () {
           showThankYouScreen(bar, jqInput)
+        },
+        error: function () {
+          jqInput.val('')
         }
       })
 
