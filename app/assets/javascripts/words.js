@@ -118,6 +118,7 @@ var showThankYouScreen = function (bar, input) {
     'left': position,
   })
   prompt.css('opacity', 0)
+  $('#press-enter-prompt').fadeOut(100)
 
   window.setTimeout(function () { input.css('opacity', 0) }, 1500)
 
