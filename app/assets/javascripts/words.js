@@ -35,7 +35,7 @@ $(function () {
     strokeWidth: 50,
     easing: 'linear',
     duration: 2500,
-    color: '#333',
+    color: '#000',
     trailColor: 'transparent',
     trailWidth: 1,
     svgStyle: null
