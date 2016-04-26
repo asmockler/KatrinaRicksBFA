@@ -60,6 +60,9 @@ $(function () {
       currentFontSize += 1
       jqInput.css('font-size', currentFontSize)
     }
+
+    if (jqInput.val() === '') $('#press-enter-prompt').fadeOut(100)
+    else $('#press-enter-prompt').fadeIn(100)
   })
 
   jqInput.on('keydown', function (e) {
