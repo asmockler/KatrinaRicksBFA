@@ -1,4 +1,9 @@
 $(function () {
+
+  ////
+  // initializeWordCloud
+  // Sets up the cloud element and the needed container elements
+  //
   function initializeWordCloud () {
     // Get the window size
     var containerSize = document.getElementById('word-cloud-container').getBoundingClientRect()
@@ -26,9 +31,13 @@ $(function () {
     return cloud
   }
 
+  ////
+  // draw
+  // Draws the words in the cloud
+  //
   function draw (words) {
     var g = d3.select('svg').select('g');
-    var words = g.selectAll('text').data(words);
+    var words = g.selectAll('text').data(words, function (d) { return d.text; });
 
     words.enter().append('text')
       .style('font-family', 'DIN Alternate')
@@ -44,10 +53,13 @@ $(function () {
 
     words.transition()
       .duration(600)
-      .style('font-size', function (d) { return d.size + 'px' })
+      .style('font-size', function (d) {
+        return d.size + 'px';
+      })
       .attr('transform', function (d) {
         return 'translate(' + [d.x, d.y] + ')'
-      });
+      })
+      .style('fill-opacity', 1);
 
     words.exit()
       .transition()
