@@ -1,3 +1,8 @@
+// HUGE Shoutout to https://github.com/jasondavies/d3-cloud for the fantastic,
+// collision-free word cloud. Most of the word cloud code comes from the examples
+// in that repo
+// http://bl.ocks.org/jwhitfieldseed/9697914#index.html
+
 $(function () {
 
   ////
@@ -161,6 +166,6 @@ $(function () {
 
     window.setInterval(function () {
       refreshCloud(cloud)
-    }, 1000)
+    }, 10000)
   }
 })
