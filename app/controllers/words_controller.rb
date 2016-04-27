@@ -4,7 +4,7 @@ class WordsController < ApplicationController
   # GET /words
   # GET /words.json
   def index
-    @words = Word.all.sort_by &:created_at
+    @words = Word.order('created_at DESC').all
 
     respond_to do |format|
       format.html { render :index }
