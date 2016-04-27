@@ -4,11 +4,11 @@ class WordsController < ApplicationController
   # GET /words
   # GET /words.json
   def index
-    @words = Word.all
+    @words = Word.all.sort_by &:created_at
 
     respond_to do |format|
       format.html { render :index }
-      format.json { render json: @words.where(visible: true) }
+      format.json { render json: Word.all.where(visible: true) }
     end
   end
 
