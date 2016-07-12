@@ -2,6 +2,13 @@
 
 This project is to support Katrina Ricks' BFA show. Participants enter a room and are prompted to leave their responses as they exit. These responses are then validated and displayed inside the exhibit for future guests to view.
 
+## Photos from the exhibit
+
+![Entering a word](photos/1.jpg)
+
+![Projector](photos/2.jpg)
+
+## Screens
 
 ### Entering a word
 
